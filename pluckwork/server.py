@@ -33,12 +33,18 @@ async def get_task() -> dict | None:
     # retry_cutoff_dt = datetime.utcnow() - timedelta(hours=1)
     _task = select(Task).where(Task.reserved_at == None).limit(1)  # noqa: E711
     task = session.scalar(_task)
-    return {"id": task.id, "input": task.input}
+    print(task)
+    if task is not None:
+        task.reserved_at = datetime.utcnow()
+        session.commit()
+        return {"id": task.id, "input": task.input}
+    session.rollback()
 
 @post("/task")
 async def update_task(id: str, body: bytes) -> None:
     _task = select(Task).where(Task.id == id)
     task = session.scalar(_task)
+    print(task)
     if task is not None:
         task.output = body
         session.commit()
