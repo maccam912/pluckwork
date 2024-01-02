@@ -1,0 +1,20 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Matt Koski",email = "maccam912@gmail.com"},
+]
+dependencies = [
+    "pydantic>=2.5.3",
+    "litestar>=2.4.5",
+    "uvicorn>=0.25.0",
+    "sqlalchemy>=2.0.24",
+    "alembic>=1.13.1",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm.scripts]
+serve = "uvicorn pluckwork.server:app --host 0.0.0.0 --port 8080"
