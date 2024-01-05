@@ -12,10 +12,10 @@ class Client():
     def __init__(self, url: str):
         self.url = url
         self._client = httpx.AsyncClient()
-    
+
     async def pull(self) -> Input | None:
         response = await self._client.get(self.url + "/task")
-        result = await response.json()
+        result = response.json()
         return Input(**result) if result is not None else None
 
     async def push(self, id: str, output: bytes) -> None:
