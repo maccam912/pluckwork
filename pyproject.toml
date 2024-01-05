@@ -8,6 +8,9 @@ authors = [
 dependencies = [
     "pydantic>=2.5.3",
 ]
+requires-python = ">=3.8"
+readme = "README.md"
+license = {text = "MIT"}
 
 [project.optional-dependencies]
 server = [
@@ -19,10 +22,6 @@ server = [
 client = [
     "httpx>=0.26.0",
 ]
-
-requires-python = ">=3.8"
-readme = "README.md"
-license = {text = "MIT"}
 
 [tool.pdm.scripts]
 serve = "uvicorn pluckwork.server:app --host 0.0.0.0 --port 8080"
