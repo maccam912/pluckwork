@@ -7,12 +7,19 @@ authors = [
 ]
 dependencies = [
     "pydantic>=2.5.3",
+]
+
+[project.optional-dependencies]
+server = [
     "litestar>=2.4.5",
     "uvicorn>=0.25.0",
     "sqlalchemy>=2.0.24",
     "alembic>=1.13.1",
+]
+client = [
     "httpx>=0.26.0",
 ]
+
 requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
