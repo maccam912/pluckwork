@@ -1,6 +1,6 @@
 [project]
-name = ""
-version = ""
+name = "pluckwork"
+version = "0.1.0"
 description = ""
 authors = [
     {name = "Matt Koski",email = "maccam912@gmail.com"},
@@ -11,8 +11,9 @@ dependencies = [
     "uvicorn>=0.25.0",
     "sqlalchemy>=2.0.24",
     "alembic>=1.13.1",
+    "httpx>=0.26.0",
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.8"
 readme = "README.md"
 license = {text = "MIT"}
 
