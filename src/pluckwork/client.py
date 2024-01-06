@@ -15,16 +15,16 @@ class Client():
         self._client = httpx.AsyncClient()
 
     async def enqueue_job(self, input: bytes, topic: str) -> str:
-        response = await self._client.post(self.url, data=input)
+        response = await self._client.post(self.url, content=input)
         return str(response.content)
 
     async def dequeue_job(self, topic: str) -> Input | None:
         response = await self._client.get(self.url + "/task")
-        result = response.json()
+        result = response.content
         return Input(**result) if result is not None else None
 
     async def submit_result(self, id: str, output: bytes) -> None:
-        await self._client.post(self.url + "/task", params={"id": id}, data=output)
+        await self._client.post(self.url + "/task", params={"id": id}, content=output)
 
     async def retrieve_result(self, id: str) -> bytes | None:
         result = await self._client.get(self.url, params={"id": id})
