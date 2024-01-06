@@ -28,6 +28,8 @@ class Client():
 
     async def retrieve_result(self, id: bytes) -> bytes | None:
         result = await self._client.get(self.url, params={"id": id})
+        if result.content == b'null':
+            return None
         return result.content
     
     async def call(self, input: bytes, topic: str) -> bytes:
