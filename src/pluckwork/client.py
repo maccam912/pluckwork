@@ -20,7 +20,7 @@ class Client():
 
     async def dequeue_job(self, topic: str) -> Input | None:
         response = await self._client.get(self.url + "/task")
-        result = response.content
+        result = response.json()
         return Input(**result) if result is not None else None
 
     async def submit_result(self, id: str, output: bytes) -> None:
