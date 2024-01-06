@@ -26,8 +26,8 @@ class Client():
     async def submit_result(self, id: str, output: bytes) -> None:
         await self._client.post(self.url + "/task", params={"id": id}, content=output)
 
-    async def retrieve_result(self, id: str) -> bytes | None:
-        result = await self._client.get(self.url, params={"id": id})
+    async def retrieve_result(self, id: bytes) -> bytes | None:
+        result = await self._client.get(self.url, params={"id": id.decocde()})
         return result.content
     
     async def call(self, input: bytes, topic: str) -> bytes:
